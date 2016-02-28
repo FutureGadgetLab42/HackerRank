@@ -11,7 +11,7 @@ import java.io.File;
  */
 public class KnapsackTest {
     private Solution solution;
-    private static final File[] INPUT_FILES = {new File("input01")}, OUTPUT_FILES = {new File("output01")};
+    private static final File[] INPUT_FILES = {new File("input00")}, OUTPUT_FILES = {new File("output00")};
 
     @Before
     public void setup(){
