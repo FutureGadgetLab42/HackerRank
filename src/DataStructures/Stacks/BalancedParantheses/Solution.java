@@ -1,7 +1,7 @@
 package DataStructures.Stacks.BalancedParantheses;
 
 /**
- * Created by Tom on 2/28/16.
+ * https://www.hackerrank.com/challenges/balanced-parentheses
  */
 public class Solution {
 }
