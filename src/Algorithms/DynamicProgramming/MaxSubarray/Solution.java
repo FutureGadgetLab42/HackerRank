@@ -1,13 +1,24 @@
 package Algorithms.DynamicProgramming.MaxSubarray;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
  https://www.hackerrank.com/challenges/maxsubarray
  */
 public class Solution {
+    private static final boolean LOCAL_TEST = true;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        if(LOCAL_TEST) {
+            try {
+                sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/DynamicProgramming/MaxSubarray/tests/input01"));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
         int numTestCases = Integer.parseInt(sc.nextLine()), numItems, inputArr[];
         String line[];
 
@@ -23,11 +34,28 @@ public class Solution {
         }
     }
 
+    // Kadane's Algorithm
     private static int maxContiguous(int[] inputArr) {
-        return -1;
+        int globalMax = inputArr[0], localMax = inputArr[0];
+
+        for(int i = 1; i < inputArr.length; i++) {
+            localMax = Math.max(inputArr[i], localMax + inputArr[i]);
+            if(localMax > globalMax) {
+                globalMax = localMax;
+            }
+        }
+
+        return globalMax;
     }
 
     private static int maxNonContiguous(int[] inputArr) {
-        return -1;
+        int result = 0;
+
+        for(int index = 0; index < inputArr.length; index++) {
+            if(inputArr[index] > 0) {
+                result += inputArr[index];
+            }
+        }
+        return result;
     }
 }
