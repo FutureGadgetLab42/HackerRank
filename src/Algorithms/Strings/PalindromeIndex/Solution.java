@@ -11,7 +11,7 @@ import java.util.Scanner;
  * https://www.hackerrank.com/challenges/palindrome-index
  */
 public class Solution {
-    private static final boolean LOCAL_TEST = true;
+    private static final boolean LOCAL_TEST = false;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -34,39 +34,19 @@ public class Solution {
 
     // Char at 'index' should be matched by char at 'length-index'
     public static int palindromeIndex(String input) {
-        ArrayList<Integer> indexList;
-        HashMap<Character, List<Integer>> charToIndices = new HashMap<>();
         for(int i = 0; i < input.length(); i++) {
-            if(charToIndices.get(input.charAt(i)) == null) {
-                indexList = new ArrayList<>();
-                indexList.add(i);
-                charToIndices.put(input.charAt(i), indexList);
-            } else {
-                charToIndices.get(input.charAt(i)).add(i);
+            if(input.charAt(i) != input.charAt(input.length() - (i + 1))) {
+
+                if(input.charAt(i) == input.charAt(input.length() - (i + 2))) {
+                    return input.length() - (i + 1);
+                } else if(i > 0) {
+                    return input.length() - i;
+                } else {
+                    return i;
+                }
             }
         }
 
-        for(int i = 0; i < input.length(); i++) {
-
-        }
-        return 42;
+        return -1;
     }
-
-//    public static int palindromeIndex(String input) {
-//        return palindromeHelper(input, 0);
-//    }
-
-//    public static int palindromeHelper(String input, int numRemovals) {
-//        if(input.equals("") || input.length() == 1) {
-//            return -1;
-//        } else {
-//            char first = input.charAt(0), last  = input.charAt(input.length() - 1);
-//            if(first != last) {
-//                return numRemovals;
-//            } else {
-//                input = input.substring(1, input.length() - 2);
-//                return palindromeHelper(input, numRemovals + 1);
-//            }
-//        }
-//    }
 }
