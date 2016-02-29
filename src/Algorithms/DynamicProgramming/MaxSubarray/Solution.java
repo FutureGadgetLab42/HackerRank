@@ -55,7 +55,6 @@ public class Solution {
             if(inputArr[index] > 0 || result == 0) {
                 result += inputArr[index];
             } else if(inputArr[index] > result){
-
                 result = inputArr[index];
             }
         }
