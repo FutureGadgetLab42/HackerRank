@@ -14,7 +14,7 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
         if(LOCAL_TEST) {
             try {
-                sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/DynamicProgramming/MaxSubarray/tests/input01"));
+                sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/DynamicProgramming/MaxSubarray/tests/input02"));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -52,8 +52,11 @@ public class Solution {
         int result = 0;
 
         for(int index = 0; index < inputArr.length; index++) {
-            if(inputArr[index] > 0) {
+            if(inputArr[index] > 0 || result == 0) {
                 result += inputArr[index];
+            } else if(inputArr[index] > result){
+
+                result = inputArr[index];
             }
         }
         return result;
