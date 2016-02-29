@@ -16,7 +16,7 @@ public class Solution {
 
         if(LOCAL_TEST) {
             try {
-                sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/Strings/Anagram/tests/input00"));
+                sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/Strings/Anagram/tests/input01"));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
