@@ -39,8 +39,6 @@ public class Solution {
 
                 if(input.charAt(i) == input.charAt(input.length() - (i + 2))) {
                     return input.length() - (i + 1);
-                } else if(i > 0) {
-                    return input.length() - i;
                 } else {
                     return i;
                 }
