@@ -2,9 +2,6 @@ package Algorithms.Strings.PalindromeIndex;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -17,7 +14,7 @@ public class Solution {
 
         if(LOCAL_TEST) {
             try {
-                sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/Strings/PalindromeIndex/tests/input00"));
+                sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/Strings/PalindromeIndex/tests/input01"));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -34,17 +31,18 @@ public class Solution {
 
     // Char at 'index' should be matched by char at 'length-index'
     public static int palindromeIndex(String input) {
+        char lowChar, highChar;
         for(int i = 0; i < input.length(); i++) {
-            if(input.charAt(i) != input.charAt(input.length() - (i + 1))) {
-
-                if(input.charAt(i) == input.charAt(input.length() - (i + 2))) {
+            lowChar = input.charAt(i);
+            highChar = input.charAt(input.length() - (i + 1));
+            if(lowChar != highChar) {
+                if(lowChar == input.charAt(input.length() - (i + 2))) {
                     return input.length() - (i + 1);
                 } else {
                     return i;
                 }
             }
         }
-
         return -1;
     }
 }
