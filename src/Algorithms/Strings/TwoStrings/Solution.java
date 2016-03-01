@@ -1,14 +1,14 @@
 package Algorithms.Strings.TwoStrings;
 
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.File;
 import java.util.Scanner;
 
 /**
  * https://www.hackerrank.com/challenges/two-strings
  */
 public class Solution {
-    private static final boolean LOCAL_TEST = false;
+    private static final boolean LOCAL_TEST = true;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

@@ -28,11 +28,23 @@ public class Solution {
         for(int i = 0; i < line.length; i++) {
             denominations[i] = Integer.parseInt(line[i]);
         }
-        System.out.println("" + makeChange(changeAmount, denominations));
+        System.out.println("" + makeChangeDynamic(changeAmount, denominations));
     }
 
-    private static int makeChange(int changeAmount, int[] denominations) {
+    private static int makeChangeDynamic(int changeAmount, int[] denominations) {
+
+
         return 42;
+    }
+
+    /* This method works by the method of exponential generating functions and runs in time
+    * O(n*m) where n is the amount to make change for, and m the number of denominations.
+    *
+    * Each denomination, k, has a corresponding polynomal, p_k = 1 + x^k + x^2k + ...
+    * Then if pi = product(p_k), the coefficient of x_n is the number of ways to
+    * make n cents of change */
+    private static int makeChangeGeneratingFunctionology(int changeAmount, int[] denominations) {
+        return -42;
     }
 
 }
