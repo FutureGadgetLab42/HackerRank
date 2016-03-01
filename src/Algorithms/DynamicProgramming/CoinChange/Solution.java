@@ -8,7 +8,7 @@ import java.util.Scanner;
  * https://www.hackerrank.com/challenges/coin-change
  */
 public class Solution {
-    private static boolean LOCAL_TEST = true;
+    private static boolean LOCAL_TEST = false;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
