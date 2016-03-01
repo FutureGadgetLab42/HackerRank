@@ -35,29 +35,15 @@ public class Solution {
     private static int anagramify(String s1, String s2) {
         if(s1.length() != s2.length()) return -1;
         int result = 0;
-        HashMap<Character, Integer> map1 = new HashMap<>(), map2 = new HashMap<>();
 
         for(int index = 0; index < s2.length(); index++) {
-            char c1 = s1.charAt(index), c2 = s2.charAt(index);
+            char c = s2.charAt(index);
 
-            if(map1.get(c1) == null) {
-                map1.put(c1, 1);
+            int indexOfC = s1.indexOf(c);
+            if(indexOfC == -1) {
+                result++;
             } else {
-                map1.put(c1, map1.get(c1) + 1);
-            }
-
-            if(map2.get(c2) == null) {
-                map2.put(c2, 1);
-            } else {
-                map2.put(c2, map2.get(c2) + 1);
-            }
-        }
-
-        for(Character c2 : map2.keySet()) {
-            if(map1.get(c2) == null) {
-                result += map2.get(c2);
-            } else {
-                result += Math.abs(map2.get(c2) - map1.get(c2));
+                s1 = s1.substring(0, indexOfC) + s1.substring(indexOfC + 1, s1.length());
             }
         }
 
