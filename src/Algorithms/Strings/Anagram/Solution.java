@@ -46,7 +46,6 @@ public class Solution {
                 s1 = s1.substring(0, indexOfC) + s1.substring(indexOfC + 1, s1.length());
             }
         }
-
         return result;
     }
 }
