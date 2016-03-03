@@ -2,6 +2,7 @@ package Algorithms.Strings.TwoStrings;
 
 import java.io.FileNotFoundException;
 import java.io.File;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -31,11 +32,14 @@ public class Solution {
     }
 
     private static String commonSubstring(String line1, String line2) {
-        for(int index = 0; index < line1.length(); index++) {
-            if(line2.contains("" + line1.charAt(index))) {
-                return "YES";
-            }
+        HashMap<String, Integer> occurrences = new HashMap<>();
+        for(int i = 0; i < line1.length(); i++) {
+            if(occurrences.get("" + line1.charAt(i)) == null) occurrences.put("" + line1.charAt(i), 1);
         }
+        for(int i = 0; i < line2.length(); i++) {
+            if(occurrences.get("" + line2.charAt(i)) != null) return "YES";
+        }
+
         return "NO";
     }
 
