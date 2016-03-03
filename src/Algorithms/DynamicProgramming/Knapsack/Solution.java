@@ -25,7 +25,15 @@ public class Solution {
         }
     }
 
+    // weak compositions that are linear combinations of elements in arr with coefficients in N
     public static int nearestSum(int[] arr, int expectedSum) {
+        int result[] = new int[expectedSum + 1];
+        result[0] = 1;
+        for(int i = 1; i < arr.length; i++) {
+         //   result[i] = ;
+        }
         return -1;
     }
+
+
 }
