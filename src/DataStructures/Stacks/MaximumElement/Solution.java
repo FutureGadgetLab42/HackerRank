@@ -12,7 +12,7 @@ import java.util.Stack;
  * https://www.hackerrank.com/challenges/maximum-element
  */
 public class Solution {
-    private static boolean LOCAL_TEST = true;
+    private static boolean LOCAL_TEST = false;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

@@ -10,8 +10,8 @@ import java.util.Scanner;
  */
 public class Tester {
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/DataStructures/Stacks/MaximumElement/tests/output06"));
-        Scanner mySc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/DataStructures/Stacks/MaximumElement/tests/myOutput06"));
+        Scanner sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/DataStructures/Stacks/MaximumElement/tests/output08"));
+        Scanner mySc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/DataStructures/Stacks/MaximumElement/tests/myOutput08"));
 
         ArrayList<String> lines = new ArrayList<>(), myLines = new ArrayList<>();
         while(sc.hasNextLine()) {
