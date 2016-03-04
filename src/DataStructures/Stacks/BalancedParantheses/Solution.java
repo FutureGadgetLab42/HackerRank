@@ -14,7 +14,7 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
         if(LOCAL_TEST) {
             try {
-                sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/DataStructures/Stacks/BalancedParantheses/tests/input00"));
+                sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/DataStructures/Stacks/BalancedParantheses/tests/input01"));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -42,7 +42,7 @@ public class Solution {
                     numClosedParen++;
                     break;
                 case '(':
-                    if(lastClosed.pop() != ')') return "NO";
+                    if(lastClosed.empty() || lastClosed.pop() != ')') return "NO";
                     numClosedParen--;
                     break;
                 case ']':
@@ -50,7 +50,7 @@ public class Solution {
                     numClosedVec++;
                     break;
                 case '[':
-                    if(lastClosed.pop() != ']') return "NO";
+                    if(lastClosed.empty() || lastClosed.pop() != ']') return "NO";
                     numClosedVec--;
                     break;
                 case '}':
@@ -58,7 +58,7 @@ public class Solution {
                     numClosedBracket++;
                     break;
                 case '{':
-                    if(lastClosed.pop() != '}') return "NO";
+                    if(lastClosed.empty() || lastClosed.pop() != '}') return "NO";
                     numClosedBracket--;
                     break;
                 default:
