@@ -12,14 +12,14 @@ import java.util.Stack;
  * https://www.hackerrank.com/challenges/maximum-element
  */
 public class Solution {
-    private static boolean LOCAL_TEST = false;
+    private static boolean LOCAL_TEST = true;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         if(LOCAL_TEST) {
             try {
-                sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/DataStructures/Stacks/MaximumElement/tests/input08"));
-                System.setOut(new PrintStream(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/DataStructures/Stacks/MaximumElement/tests/myOutput08")));
+                sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/DataStructures/Stacks/MaximumElement/tests/input07"));
+                System.setOut(new PrintStream(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/DataStructures/Stacks/MaximumElement/tests/myOutput07")));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -36,11 +36,10 @@ public class Solution {
                 case 1:
                     input = Integer.parseInt(line[1]);
                     st.push(input);
-                    if(maxElt.isEmpty() || input >= maxElt.peek()) maxElt.add(input);
+                    maxElt.add(input);
                     break;
                 case 2:
-                    if(maxElt.contains(st.peek())) maxElt.remove(st.peek());
-                    st.pop();
+                    maxElt.remove(st.pop());
                     break;
                 case 3:
                     System.out.println(maxElt.peek());
