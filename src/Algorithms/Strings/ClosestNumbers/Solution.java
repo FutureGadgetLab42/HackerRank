@@ -16,7 +16,7 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
         if(LOCAL_TEST) {
             try {
-                sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/Strings/ClosestNumbers/tests/input00"));
+                sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/Strings/ClosestNumbers/tests/input01"));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -50,13 +50,21 @@ public class Solution {
     }
 
     public static class IntPair{
-        int a, b;
+        int lesser, greater, a, b;
         public IntPair(int a, int b) {
+            if(a > b) {
+                greater = a;
+                lesser = b;
+            }
+            else {
+                greater = b;
+                lesser = a;
+            }
             this.a = a;
             this.b = b;
         }
         public int absoluteDifference() {
-            return Math.abs(a-b);
+            return greater - lesser;
         }
         public String toString() {
             return "" + a + " " + b;
