@@ -12,7 +12,7 @@ import java.util.Stack;
  * https://www.hackerrank.com/challenges/maximum-element
  */
 public class Solution {
-    private static boolean LOCAL_TEST = false;
+    private static boolean LOCAL_TEST = true;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -39,7 +39,7 @@ public class Solution {
                     if(maxElt.isEmpty() || input >= maxElt.peek()) maxElt.add(input);
                     break;
                 case 2:
-                    if(st.peek() == maxElt.peek()) maxElt.poll();
+                    if(maxElt.contains(st.peek())) maxElt.remove(st.peek());
                     st.pop();
                     break;
                 case 3:
