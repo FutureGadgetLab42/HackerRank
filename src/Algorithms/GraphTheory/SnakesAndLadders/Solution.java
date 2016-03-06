@@ -36,10 +36,19 @@ public class Solution {
 
     private static class DirectedGraph{
         private static int numVertices;
+        private static final int GRID_SIZE = 10, NUM_DIE_FACES = 6;
         List<Vertex> vertices;
         protected DirectedGraph(){
             vertices = new ArrayList<>();
             numVertices = 0;
+            for(int i = 0; i < Math.pow(GRID_SIZE, 2); i++) {
+                addVertex();
+            }
+            for(int i = 0; i < Math.pow(GRID_SIZE, 2) - NUM_DIE_FACES; i++) {
+                for(int j = 1; j <= NUM_DIE_FACES; j++) {
+                    addEdge(i, j);
+                }
+            }
         }
 
         protected void bfs(int startVertex){
