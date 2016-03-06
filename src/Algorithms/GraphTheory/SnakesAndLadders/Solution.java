@@ -2,9 +2,7 @@ package Algorithms.GraphTheory.SnakesAndLadders;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * https://www.hackerrank.com/challenges/the-quickest-way-up
@@ -21,41 +19,71 @@ public class Solution {
         int numTestCases = Integer.parseInt(sc.nextLine()), numSnakes, numLadders;
         String line[];
         for(int i = 0; i < numTestCases; i++) {
-            line = sc.nextLine().split(" ");
 
-            numLadders = Integer.parseInt(line[0]);
+            numLadders = Integer.parseInt(sc.nextLine());
             for(int j = 0; j < numLadders; j++) {
-
+                line = sc.nextLine().split(" ");
+                g.addEdge(Integer.parseInt(line[0]), Integer.parseInt(line[1]));
             }
 
-            numSnakes = Integer.parseInt(line[1]);
-            for(int j = 0; j < numLadders; j++) {
-
+            numSnakes = Integer.parseInt(sc.nextLine());
+            for(int j = 0; j < numSnakes; j++) {
+                line = sc.nextLine().split(" ");
+                g.addEdge(Integer.parseInt(line[0]), Integer.parseInt(line[1]));
             }
         }
     }
 
     private static class DirectedGraph{
-        private static int numVertices = 0;
-        List<Integer> vertices;
-        List<Edge> edges;
-
+        private static int numVertices;
+        List<Vertex> vertices;
         protected DirectedGraph(){
             vertices = new ArrayList<>();
-            edges = new ArrayList<>();
+            numVertices = 0;
+        }
+
+        protected void bfs(int startVertex){
+            if(startVertex < 0 || startVertex >= numVertices) throw new IllegalArgumentException("startVertex: " + startVertex);
+            Vertex current = vertices.get(startVertex), neighbor;
+            current.distance = 0;
+            current.discovered = true;
+            PriorityQueue<Vertex> queue = new PriorityQueue();
+            queue.add(current);
+            setVertexDistancesInfinity();
+
+            int nextDistance;
+            while(!queue.isEmpty()) {
+                current = queue.poll();
+                for(Edge e : current.neighbors) {
+                    nextDistance = current.distance + e.weight;
+                    neighbor = vertices.get(e.destination);
+                    if(!neighbor.discovered) {
+                        neighbor.discovered = true;
+                        queue.add(neighbor);
+                    }
+                    if(nextDistance < neighbor.distance) {
+                        neighbor.distance = nextDistance;
+                    }
+                }
+            }
         }
 
         protected void addVertex() {
+            vertices.add(new Vertex());
+        }
 
+        private void setVertexDistancesInfinity(){
+            vertices.forEach(v -> v.distance = Integer.MAX_VALUE);
         }
 
         protected void addEdge(int source, int dest) {
             if(source < 0 || dest < 0 || source >= numVertices || dest >= numVertices) throw new IllegalArgumentException("source: " + source + " dest: " + dest);
+
             Edge newEdge = new Edge(source, dest);
-            if(edges.contains(newEdge)) throw new IllegalArgumentException("already contains edge " + newEdge);
-
-
-            edges.add(new Edge(source, dest));
+            if(vertices.get(source).neighbors.contains(newEdge)) {
+                vertices.get(source).neighbors.remove(newEdge);
+            }
+            vertices.get(source).neighbors.add(newEdge);
         }
 
         private static class Edge {
@@ -70,7 +98,7 @@ public class Solution {
             public String toString() {
                 return "(" + source + ", " + destination + ")";
             }
-            
+
             public boolean equals(Object other) {
                 boolean result;
                 if(other.getClass() != Edge.class) {
@@ -84,6 +112,16 @@ public class Solution {
                     }
                 }
                 return result;
+            }
+        }
+
+        private static class Vertex {
+            int vertexNum, distance;
+            boolean discovered;
+            private List<Edge> neighbors;
+            public Vertex(){
+                neighbors = new ArrayList<>();
+                this.vertexNum = numVertices++;
             }
         }
     }
