@@ -9,35 +9,41 @@ import java.util.*;
  */
 public class Solution {
     private static boolean LOCAL_TEST = true;
+    private static final int GRID_SIZE = 10, NUM_DIE_FACES = 6;
+
     public static void main(String[] args) throws FileNotFoundException {
         Scanner sc = new Scanner(System.in);
         if(LOCAL_TEST) {
             sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/GraphTheory/SnakesAndLadders/tests/input00"));
         }
 
-        DirectedGraph g = new DirectedGraph();
+        DirectedGraph g;
         int numTestCases = Integer.parseInt(sc.nextLine()), numSnakes, numLadders;
         String line[];
         for(int i = 0; i < numTestCases; i++) {
+            g = new DirectedGraph();
 
             numLadders = Integer.parseInt(sc.nextLine());
             for(int j = 0; j < numLadders; j++) {
                 line = sc.nextLine().split(" ");
-                g.addEdge(Integer.parseInt(line[0]), Integer.parseInt(line[1]));
+                g.vertices.get(Integer.parseInt(line[0])).neighbors.clear();
+                g.addEdge(Integer.parseInt(line[0]), Integer.parseInt(line[1]), 0);
             }
 
             numSnakes = Integer.parseInt(sc.nextLine());
             for(int j = 0; j < numSnakes; j++) {
                 line = sc.nextLine().split(" ");
-                g.addEdge(Integer.parseInt(line[0]), Integer.parseInt(line[1]));
+                g.addEdge(Integer.parseInt(line[0]), Integer.parseInt(line[1]), 0);
             }
+            g.bfs(0);
+            System.out.println("" + g.vertices.get(g.numVertices - 1).distance);
         }
     }
 
     private static class DirectedGraph{
-        private static int numVertices;
-        private static final int GRID_SIZE = 10, NUM_DIE_FACES = 6;
+        protected static int numVertices;
         List<Vertex> vertices;
+
         protected DirectedGraph(){
             vertices = new ArrayList<>();
             numVertices = 0;
@@ -45,7 +51,7 @@ public class Solution {
                 addVertex();
             }
             for(int i = 0; i < Math.pow(GRID_SIZE, 2) - NUM_DIE_FACES; i++) {
-                for(int j = 1; j <= NUM_DIE_FACES; j++) {
+                for(int j = i + 1; j <= NUM_DIE_FACES; j++) {
                     addEdge(i, j);
                 }
             }
@@ -53,12 +59,12 @@ public class Solution {
 
         protected void bfs(int startVertex){
             if(startVertex < 0 || startVertex >= numVertices) throw new IllegalArgumentException("startVertex: " + startVertex);
+            setVertexDistancesInfinity();
             Vertex current = vertices.get(startVertex), neighbor;
             current.distance = 0;
             current.discovered = true;
             PriorityQueue<Vertex> queue = new PriorityQueue();
             queue.add(current);
-            setVertexDistancesInfinity();
 
             int nextDistance;
             while(!queue.isEmpty()) {
@@ -83,12 +89,23 @@ public class Solution {
 
         private void setVertexDistancesInfinity(){
             vertices.forEach(v -> v.distance = Integer.MAX_VALUE);
+            vertices.forEach(v -> v.discovered = false);
         }
 
         protected void addEdge(int source, int dest) {
             if(source < 0 || dest < 0 || source >= numVertices || dest >= numVertices) throw new IllegalArgumentException("source: " + source + " dest: " + dest);
 
             Edge newEdge = new Edge(source, dest);
+            if(vertices.get(source).neighbors.contains(newEdge)) {
+                vertices.get(source).neighbors.remove(newEdge);
+            }
+            vertices.get(source).neighbors.add(newEdge);
+        }
+
+        public void addEdge(int source, int dest, int weight) {
+            if(source < 0 || dest < 0 || source >= numVertices || dest >= numVertices) throw new IllegalArgumentException("source: " + source + " dest: " + dest);
+
+            Edge newEdge = new Edge(source, dest, weight);
             if(vertices.get(source).neighbors.contains(newEdge)) {
                 vertices.get(source).neighbors.remove(newEdge);
             }
@@ -104,6 +121,12 @@ public class Solution {
                 this.weight = 1;
             }
 
+            public Edge(int source, int dest, int weight) {
+                this.source = source;
+                this.destination = dest;
+                this.weight = weight;
+            }
+
             public String toString() {
                 return "(" + source + ", " + destination + ")";
             }
@@ -115,22 +138,29 @@ public class Solution {
                 } else {
                     Edge otherEdge = (Edge)other;
                     if(source == otherEdge.source && destination == otherEdge.destination) {
-                        result = false;
-                    } else {
                         result = true;
+                    } else {
+                        result = false;
                     }
                 }
                 return result;
             }
         }
 
-        private static class Vertex {
+        private static class Vertex implements Comparable<Vertex>{
             int vertexNum, distance;
             boolean discovered;
             private List<Edge> neighbors;
+
             public Vertex(){
                 neighbors = new ArrayList<>();
                 this.vertexNum = numVertices++;
+            }
+
+
+            @Override
+            public int compareTo(Vertex o) {
+                return Integer.compare(this.vertexNum, o.vertexNum);
             }
         }
     }
