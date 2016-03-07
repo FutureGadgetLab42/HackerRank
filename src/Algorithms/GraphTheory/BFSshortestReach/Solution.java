@@ -1,5 +1,6 @@
 package Algorithms.GraphTheory.BFSshortestReach;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +26,9 @@ public class Solution {
 
             for(int j = 0; j < numEdges; j++) {
                 line = sc.nextLine().split(" ");
-                g.addEdge(Integer.parseInt(line[0]), Integer.parseInt(line[1]));
+                g.addEdge(Integer.parseInt(line[0].trim()), Integer.parseInt(line[1]));
             }
-            start = Integer.parseInt(sc.nextLine());
+            start = Integer.parseInt(sc.nextLine().trim());
             g.bfs(start);
             output = "";
             for(int j = 1; j <= numVertices; j++) {
