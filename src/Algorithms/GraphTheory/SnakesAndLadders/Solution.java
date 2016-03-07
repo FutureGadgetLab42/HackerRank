@@ -53,6 +53,7 @@ public class Solution {
             for(int i = 0; i < Math.pow(GRID_SIZE, 2) - NUM_DIE_FACES; i++) {
                 for(int j = i + 1; j <= NUM_DIE_FACES; j++) {
                     addEdge(i, j);
+                    //hmm...
                 }
             }
         }
