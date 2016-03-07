@@ -50,10 +50,10 @@ public class Solution {
             for(int i = 0; i < Math.pow(GRID_SIZE, 2); i++) {
                 addVertex();
             }
-            for(int i = 0; i < Math.pow(GRID_SIZE, 2) - NUM_DIE_FACES; i++) {
-                for(int j = i + 1; j <= i + NUM_DIE_FACES; j++) {
+            for(int i = 0; i < Math.pow(GRID_SIZE, 2); i++) {
+                for(int j = i + 1; j <= i + NUM_DIE_FACES && j < Math.pow(GRID_SIZE, 2); j++) {
                     addEdge(i, j);
-                    //hmm...
+
                 }
             }
         }
