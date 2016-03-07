@@ -14,7 +14,7 @@ public class Solution {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner sc = new Scanner(System.in);
         if(LOCAL_TEST) {
-            sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/GraphTheory/SnakesAndLadders/tests/input00"));
+            sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/GraphTheory/SnakesAndLadders/tests/input01"));
         }
 
         DirectedGraph g;
@@ -35,7 +35,7 @@ public class Solution {
                 line = sc.nextLine().split(" ");
                 g.addEdge(Integer.parseInt(line[0]), Integer.parseInt(line[1]), 0);
             }
-            g.bfs(0);
+            g.bfs(1);
             System.out.println("" + g.vertices.get(g.numVertices - 1).distance);
         }
     }
@@ -47,11 +47,11 @@ public class Solution {
         protected DirectedGraph(){
             vertices = new ArrayList<>();
             numVertices = 0;
-            for(int i = 0; i < Math.pow(GRID_SIZE, 2); i++) {
+            for(int i = 0; i <= Math.pow(GRID_SIZE, 2); i++) {
                 addVertex();
             }
-            for(int i = 0; i < Math.pow(GRID_SIZE, 2); i++) {
-                for(int j = i + 1; j <= i + NUM_DIE_FACES && j < Math.pow(GRID_SIZE, 2); j++) {
+            for(int i = 1; i <= Math.pow(GRID_SIZE, 2); i++) {
+                for(int j = i + 1; j <= i + NUM_DIE_FACES && j <= Math.pow(GRID_SIZE, 2); j++) {
                     addEdge(i, j);
 
                 }
@@ -73,12 +73,10 @@ public class Solution {
                 for(Edge e : current.neighbors) {
                     nextDistance = current.distance + e.weight;
                     neighbor = vertices.get(e.destination);
-                    if(!neighbor.discovered) {
-                        neighbor.discovered = true;
-                        queue.add(neighbor);
-                    }
+
                     if(nextDistance < neighbor.distance) {
                         neighbor.distance = nextDistance;
+                        queue.add(neighbor);
                     }
                 }
             }
@@ -94,7 +92,7 @@ public class Solution {
         }
 
         protected void addEdge(int source, int dest) {
-            if(source < 0 || dest < 0 || source >= numVertices || dest >= numVertices) throw new IllegalArgumentException("source: " + source + " dest: " + dest);
+            if(source < 0 || dest < 0 || source >= numVertices || dest > numVertices) throw new IllegalArgumentException("source: " + source + " dest: " + dest);
 
             Edge newEdge = new Edge(source, dest);
             if(vertices.get(source).neighbors.contains(newEdge)) {
@@ -104,7 +102,7 @@ public class Solution {
         }
 
         public void addEdge(int source, int dest, int weight) {
-            if(source < 0 || dest < 0 || source >= numVertices || dest >= numVertices) throw new IllegalArgumentException("source: " + source + " dest: " + dest);
+            if(source <= 0 || dest <= 0 || source >= numVertices || dest > numVertices) throw new IllegalArgumentException("source: " + source + " dest: " + dest);
 
             Edge newEdge = new Edge(source, dest, weight);
             if(vertices.get(source).neighbors.contains(newEdge)) {
