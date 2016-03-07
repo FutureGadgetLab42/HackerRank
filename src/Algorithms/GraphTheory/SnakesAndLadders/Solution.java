@@ -1,6 +1,5 @@
 package Algorithms.GraphTheory.SnakesAndLadders;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
@@ -8,15 +7,10 @@ import java.util.*;
  * https://www.hackerrank.com/challenges/the-quickest-way-up
  */
 public class Solution {
-    private static boolean LOCAL_TEST = true;
     private static final int GRID_SIZE = 10, NUM_DIE_FACES = 6;
 
     public static void main(String[] args) throws FileNotFoundException {
         Scanner sc = new Scanner(System.in);
-        if(LOCAL_TEST) {
-            sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/GraphTheory/SnakesAndLadders/tests/input01"));
-        }
-
         DirectedGraph g;
         int numTestCases = Integer.parseInt(sc.nextLine()), numSnakes, numLadders;
         String line[];
@@ -33,6 +27,7 @@ public class Solution {
             numSnakes = Integer.parseInt(sc.nextLine());
             for(int j = 0; j < numSnakes; j++) {
                 line = sc.nextLine().split(" ");
+                g.vertices.get(Integer.parseInt(line[0])).neighbors.clear();
                 g.addEdge(Integer.parseInt(line[0]), Integer.parseInt(line[1]), 0);
             }
             g.bfs(1);
@@ -74,7 +69,7 @@ public class Solution {
                     nextDistance = current.distance + e.weight;
                     neighbor = vertices.get(e.destination);
 
-                    if(nextDistance < neighbor.distance) {
+                    if(neighbor.distance < 0 || nextDistance < neighbor.distance) {
                         neighbor.distance = nextDistance;
                         queue.add(neighbor);
                     }
@@ -87,7 +82,7 @@ public class Solution {
         }
 
         private void setVertexDistancesInfinity(){
-            vertices.forEach(v -> v.distance = Integer.MAX_VALUE);
+            vertices.forEach(v -> v.distance = -1);
             vertices.forEach(v -> v.discovered = false);
         }
 
