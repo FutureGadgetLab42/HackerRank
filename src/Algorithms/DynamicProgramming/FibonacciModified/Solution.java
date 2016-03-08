@@ -13,15 +13,15 @@ public class Solution {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner sc = new Scanner(System.in);
         if(LOCAL_TEST) {
-            sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/DynamicProgramming/FibonacciModified/tests/input00"));
+            sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Algorithms/DynamicProgramming/FibonacciModified/tests/input01"));
         }
 
         String line[] = sc.nextLine().split(" ");
-        System.out.println("" + fib(Integer.parseInt(line[0].trim()), Integer.parseInt(line[1].trim()), Integer.parseInt(line[2].trim())));
+        System.out.println("" + fib(Long.parseLong(line[0].trim()), Long.parseLong(line[1].trim()), Integer.parseInt(line[2].trim())));
     }
 
-    private static int fib(int f0, int f1, int n) {
-        int[] fibonacci = new int[n+1];
+    private static long fib(long f0, long f1, int n) {
+        long[] fibonacci = new long[n+1];
         fibonacci[0] = f0;
         fibonacci[1] = f1;
 

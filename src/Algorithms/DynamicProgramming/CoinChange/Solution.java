@@ -8,7 +8,7 @@ import java.util.Scanner;
  * https://www.hackerrank.com/challenges/coin-change
  */
 public class Solution {
-    private static boolean LOCAL_TEST = false;
+    private static boolean LOCAL_TEST = true;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -42,15 +42,6 @@ public class Solution {
         }
 
         return values[changeAmount];
-    }
-
-    /* This method works by the method of exponential generating functions and runs in time
-    * O(n*m) where n is the amount to make change for, and m the number of denominations.
-    *
-    * Each denomination, k, has a corresponding polynomial, p_k = 1 + x^k + x^(2k) + ...
-    * Then the coefficient of x_n in the product of all p_i is the number of ways to make n cents of change */
-    private static int makeChangeGeneratingFunctionology(int changeAmount, int[] denominations) {
-        return -42;
     }
 
 }
