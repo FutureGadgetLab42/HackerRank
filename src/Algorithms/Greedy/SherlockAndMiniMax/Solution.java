@@ -34,7 +34,7 @@ public class Solution {
         for(int i = 0; i < arr.length; i++){
             for(int j = lowerLimit; j <= upperLimit; j++) {
                 currentDifference = (int) Math.abs(arr[i] - j);
-                
+
             }
         }
         Collections.sort(result);
