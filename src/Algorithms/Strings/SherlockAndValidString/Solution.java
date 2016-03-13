@@ -32,7 +32,7 @@ public class Solution {
         for(int n : occurrenceMap.values()) {
             if(!occurenceSet.isEmpty()) {
                 if(!occurenceSet.contains(n)) {
-                    if(seenDifferentValue || Math.abs(lastSeen - n) > 1) return false;
+                    if((seenDifferentValue || Math.abs(lastSeen - n) > 1) && n > 1) return false;
                     else seenDifferentValue = true;
                 }
             } else {
