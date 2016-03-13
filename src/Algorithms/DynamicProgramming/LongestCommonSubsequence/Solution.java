@@ -36,17 +36,29 @@ public class Solution {
     }
 
     private static int[] constructSequence(int[] seq1, int[] seq2, int[][] matrix, int i, int j) {
+        for(int lel = 0; lel < matrix.length; lel++) {
+            for(int kek = 0; kek < matrix[lel].length; kek++) {
+                System.out.print(""  + matrix[lel][kek] + " ");
+            }
+            System.out.println();
+        }
+
         int result[] = new int[matrix[0][0]], index = matrix[0][0] - 1;
+        int moveLeft, moveUp;
         while(i > 0 && j > 0) {
             if(seq1[i - 1] == seq2[j - 1]) {
                 result[index-1] = seq1[i-1];
                 index--;
                 i--;
                 j--;
-            } else if (matrix[i - 1][j] >= matrix[i][j - 1]) {
-                i--;
-            } else {
-                j--;
+            } else{
+                moveUp = matrix[i - 1][j];
+                moveLeft = matrix[i][j-1];
+                if (moveUp >= moveLeft) {
+                    i--;
+                } else {
+                    j--;
+                }
             }
         }
         return result;
