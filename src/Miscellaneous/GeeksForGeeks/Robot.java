@@ -12,5 +12,13 @@ package Miscellaneous.GeeksForGeeks;
 
 
 public class Robot {
+    int matrix[][];
+    int strength;
+
+    public Robot(int strength, int[][] matrix) {
+        this.matrix = matrix;
+        this.strength = strength;
+    }
+
 
 }
