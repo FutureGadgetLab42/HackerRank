@@ -40,4 +40,31 @@ public class Solution {
         }
         return globalMax;
     }
+//
+//    private static int largestRectangle(int[] buildingHeights) {
+//        int globalMax = 0, localMax = 0, poppedElt;
+//        Stack<Integer> stack = new Stack<>();
+//        for(int i = 0; i < buildingHeights.length; i++) {
+//            if(stack.empty() || stack.peek() < buildingHeights[i]) {
+//                stack.push(i);
+//            } else {
+//                poppedElt = stack.pop();
+//                localMax = stack.empty()? i : i - stack.peek() - 1;
+//                if(localMax > globalMax) globalMax = localMax;
+//            }
+//        }
+//
+//        while(!stack.empty()) {
+//            poppedElt = stack.pop();
+//            if(stack.empty()) {
+//                localMax = buildingHeights[poppedElt];
+//            } else {
+//                localMax = (buildingHeights.length - stack.peek() + 1) * buildingHeights[poppedElt];
+//            }
+//            if(localMax > globalMax) globalMax = localMax;
+//        }
+//
+//        return globalMax;
+//    }
+
 }
