@@ -4,9 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-/**
- * Created by Tom on 3/17/16.
- */
 public class Solution {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(new File("/Users/Tom/IdeaProjects/HackerRank and Miscellaneous/src/Miscellaneous/InterviewStuff/FriendCircles/tests/input00"));
@@ -16,6 +13,7 @@ public class Solution {
             friends[i] = sc.nextLine();
         }
         System.out.print("" + friendCircles(friends));
+        sc.close();
     }
     static int friendCircles(String[] friends) {
         int result = 0;

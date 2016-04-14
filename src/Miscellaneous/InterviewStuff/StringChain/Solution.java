@@ -51,32 +51,4 @@ public class Solution {
         }
         return globalMax;
     }
-
-
-//    static int longest_chain(String[] words) {
-//        int result = 0, localMax = 0;
-//        Set<String> wordSet = new HashSet<>();
-//        for(int i = 0; i < words.length; i++) {
-//            wordSet.add(words[i]);
-//        }
-//
-//        String curWord;
-//        StringBuilder currentSubstring;
-//        for(int i = 0; i < words.length; i++) {
-//            localMax = 0;
-//            curWord = words[i];
-//
-//            for(int j = 0; j < curWord.length(); j++) {
-//                localMax = 0;
-//                currentSubstring = new StringBuilder(words[i]);
-//                currentSubstring.deleteCharAt(j);
-//                while(wordSet.contains(currentSubstring.toString())){
-//
-//                }
-//            }
-//        }
-//
-//
-//        return result;
-//    }
 }
