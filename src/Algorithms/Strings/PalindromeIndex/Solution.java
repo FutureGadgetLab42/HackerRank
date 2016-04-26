@@ -8,7 +8,7 @@ import java.util.Scanner;
  * https://www.hackerrank.com/challenges/palindrome-index
  */
 public class Solution {
-    private static final boolean LOCAL_TEST = false;
+    private static final boolean LOCAL_TEST = true;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -36,10 +36,10 @@ public class Solution {
             lowChar = input.charAt(i);
             highChar = input.charAt(input.length() - (i + 1));
             if(lowChar != highChar) {
-                if(lowChar == input.charAt(input.length() - (i + 2))) {
-                    return input.length() - (i + 1);
-                } else {
+                if(highChar == input.charAt(i + 1)) {
                     return i;
+                } else {
+                    return input.length() - (i + 1);
                 }
             }
         }
